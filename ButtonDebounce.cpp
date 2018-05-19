@@ -16,8 +16,10 @@ void Button::begin(int _pin, bool _pull_wiring) {
     pull_wiring=_pull_wiring;
     pinMode(pin, INPUT_PULLUP);
 
+    previous_millis = 0;
+
     short_press_function_on=false;
-    long_press_function_on=false;  
+    long_press_function_on=false;
 }
 
 bool Button::addShortPressCallback(void(*_short_callback)())
@@ -39,18 +41,19 @@ bool Button::addLongPressCallback(void(*_long_callback)(), int _long_press_time)
 
 
 void Button::buttonLoop(){
-    
+
     current_millis=millis();
-    
+    if(previous_millis == 0) previous_millis = millis();
+
     current_read=digitalRead(pin);
-    
+
     if(current_read==pull_wiring && previous_read==!pull_wiring)
     {
         previous_millis=millis();
         long_pressed=false;
     }
-    
-    
+
+
     //SHORT CALLBACK SOLO SE RILASCIATO PRIMA DEL LONG DEBOUNCE
     if(short_press_function_on==true && current_read==!pull_wiring && previous_read==pull_wiring && current_millis-previous_millis>DEBOUNCE_TIME && long_pressed==false)
     {
@@ -65,6 +68,6 @@ void Button::buttonLoop(){
        long_pressed=true;
        previous_millis=millis();
     }
-    
+
     previous_read=current_read;
 }
