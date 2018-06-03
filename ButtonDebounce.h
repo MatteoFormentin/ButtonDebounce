@@ -13,15 +13,15 @@
 
 
 class Button {
-public:
+  public:
     Button();
-    void begin(int _pin, bool _pull_wiring);
+    void begin(int _pin);
     bool addShortPressCallback(void(*_short_callback)());
     void begin(int _pin, bool _pull_wiring, int _press_time);
     bool addLongPressCallback(void(*_long_callback)(), int _long_press_time);
     void buttonLoop();
 
-private:
+  private:
     const int DEBOUNCE_TIME = 50;
     int pin;
     bool pull_wiring;
