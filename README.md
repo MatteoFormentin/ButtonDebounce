@@ -1,4 +1,4 @@
-# ButtonDebounce - Simple Debounce Library
+# ButtonDebounce - Simple Arduino Debounce Library
 *Created by Matteo Formentin*  
 *WebSite: https://www.ecuboost.it*  
 
