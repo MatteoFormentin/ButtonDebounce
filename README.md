@@ -8,7 +8,7 @@ Please note that you have to connect button directly between ground and one digi
 How to use:  
 1. First, you have to declare one Button object for every button you want to use. You have to pass as parameter Arduino connection pin:   
       ```
-      Button buttonName(4, HIGH);
+      Button buttonName(4);
       ```
 2. Attach callbacks to every button object. you can add one short press callback and one long press one (in this case you have to specify the times in milliseconds before action will be performed):  
       ```
@@ -16,8 +16,9 @@ How to use:
       buttonName.addLongPressCallback(callback, 1000);
       ```
 
-3. Then you have to call buttonLoop() method for every Button object:  
+3. Then in loop() function you have to call buttonLoop() method for every Button object:  
 
       ```
       buttonName.buttonLoop();
-      ```
+      ```  
+   Make sure that it is always executed once per loop.
