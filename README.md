@@ -5,7 +5,7 @@
 ButtonDebounce is a very simple Arduino library which purpose is to make debounce simple by connecting buttons events with the execution of users defined callbacks. The library is non-blocking, so you can execute other task while ButtonDebounce take care of buttons events. You can also specify your own debounce time in order to execute different functions on long button press.  
 Please note that you have to connect button directly between ground and one digital pin. Because of special INPUT_PULLUP pin mode you don't need any pull-up resistor.  
 
-How to use:  
+Usage:  
 1. First, you have to declare one Button object for every button you want to use. You have to pass as parameter Arduino connection pin:   
       ```
       Button buttonName(4);
