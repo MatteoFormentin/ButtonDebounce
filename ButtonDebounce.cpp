@@ -39,8 +39,6 @@ bool Button::addLongPressCallback(void(*_long_callback)(), int _long_press_time)
 
 
 void Button::buttonLoop() {
-
-
   current_millis = millis();
   if (previous_millis == 0) previous_millis = millis(); //Prevents callback being called at boot
 
@@ -51,7 +49,6 @@ void Button::buttonLoop() {
     previous_millis = millis();
     long_pressed = false;
   }
-
 
   //SHORT CALLBACK SOLO SE RILASCIATO PRIMA DEL LONG DEBOUNCE
   if (short_press_function_on == true && current_read == !pull_wiring && previous_read == pull_wiring && current_millis - previous_millis > DEBOUNCE_TIME && long_pressed == false)
