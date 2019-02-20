@@ -9,7 +9,7 @@ Usage:
 1. First, you have to declare one Button object for every button you want to use.  
   
       ```
-      Button buttonName();
+      Button buttonName;
       ```
 2. Then, to initialize button object, call:  
   
