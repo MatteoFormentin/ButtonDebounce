@@ -6,10 +6,16 @@ ButtonDebounce is a very simple Arduino library which purpose is to make debounc
 Please note that you have to connect button directly between ground and one digital pin. Because of special INPUT_PULLUP pin mode you don't need any pull-up resistor.  
 
 Usage:  
-1. First, you have to declare one Button object for every button you want to use. You have to pass as parameter Arduino connection pin:   
+1. First, you have to declare one Button object for every button you want to use.  
       ```
-      Button buttonName(4);
+      Button buttonName();
       ```
+2. Then, to initialize button object, call:  
+      ```
+      buttonName.begin(pin_number);
+      ```
+You have to pass as parameter Arduino connection pin.  
+
 2. Attach callbacks to every button object. you can add one short press callback and one long press one (in this case you have to specify the times in milliseconds before action will be performed):  
       ```
       buttonName.addShortPressCallback(callback);  
