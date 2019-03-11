@@ -7,11 +7,12 @@
 //
 
 #include "ButtonDebounce.h"
-//#include "Arduino.h"
+#include "Arduino.h"
 
 Button::Button() {}
 
-void Button::begin(int _pin) {
+void Button::begin(int _pin)
+{
   pin = _pin;
   pull_wiring = LOW;
   pinMode(pin, INPUT_PULLUP);
@@ -20,27 +21,82 @@ void Button::begin(int _pin) {
   long_press_function_on = false;
 }
 
-bool Button::addShortPressCallback(void(*_short_callback)())
+bool Button::addShortPressCallback(void (*_short_callback)())
 {
-  if (short_press_function_on == true) return false;
+  if (short_press_function_on == true)
+    return false;
   short_callback = _short_callback;
+  short_press_function_on = true;
+  return true;
+}
+
+//Will also disable short press callback
+bool Button::removeShortPressCallback()
+{
+  if (short_press_function_on == false)
+    return false;
+  short_callback = null;
+  short_press_function_on = false;
+  return true;
+}
+
+void Button::enableShortPressCallback()
+{
   short_press_function_on = true;
 }
 
-bool Button::addLongPressCallback(void(*_long_callback)(), int _long_press_time)
+void Button::disableShortPressCallback()
 {
-  if (long_press_function_on == true) return false;
+  short_press_function_on = false;
+}
+
+bool Button::getShortPressCallbackStatus()
+{
+  return short_press_function_on;
+}
+
+bool Button::addLongPressCallback(void (*_long_callback)(), int _long_press_time)
+{
+  if (long_press_function_on == true)
+    return false;
   long_callback = _long_callback;
-  if (_long_press_time <= DEBOUNCE_TIME) return false;
+  if (_long_press_time <= DEBOUNCE_TIME)
+    return false;
   long_press_time = _long_press_time;
+  long_press_function_on = true;
+  return true;
+}
+
+//Will also disable long press callback
+bool Button::removeLongPressCallback()
+{
+  if (long_press_function_on == false)
+    return false;
+  long_callback = null;
+  long_press_function_on = false;
+  return true;
+}
+
+void Button::enableLongPressCallback()
+{
   long_press_function_on = true;
 }
 
+void Button::disableLongPressCallback()
+{
+  long_press_function_on = false;
+}
 
+bool Button::getLongPressCallbackStatus()
+{
+  return long_press_function_on;
+}
 
-void Button::buttonLoop() {
+void Button::buttonLoop()
+{
   current_millis = millis();
-  if (previous_millis == 0) previous_millis = millis(); //Prevents callback being called at boot
+  if (previous_millis == 0)
+    previous_millis = millis(); //Prevents callback being called at boot
 
   current_read = digitalRead(pin);
 
@@ -58,7 +114,7 @@ void Button::buttonLoop() {
   }
 
   //LONG CALLBACK QUANDO RAGGIUNTO LONG DEBOUNCE - SENZA RILASCIO
-  if (long_press_function_on == true && current_read == LOW  && current_millis - previous_millis > long_press_time && long_pressed == false)
+  if (long_press_function_on == true && current_read == LOW && current_millis - previous_millis > long_press_time && long_pressed == false)
   {
     long_callback();
     long_pressed = true;
