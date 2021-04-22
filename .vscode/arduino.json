@@ -1,4 +1,6 @@
 {
-    "board": "arduino:avr:uno",
-    "sketch": "Example/ButtonDebounce_example/ButtonDebounce_example.ino"
+    "board": "arduino:megaavr:nona4809",
+    "sketch": "Example/ButtonDebounce_example/ButtonDebounce_example.ino",
+    "configuration": "mode=off",
+    "port": "/dev/tty.usbmodem145201"
 }
