@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "Example/ButtonDebounce_example/ButtonDebounce_example.ino"
+}

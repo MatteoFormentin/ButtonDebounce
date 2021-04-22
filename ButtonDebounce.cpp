@@ -35,7 +35,7 @@ bool Button::removeShortPressCallback()
 {
   if (short_press_function_on == false)
     return false;
-  short_callback = null;
+  short_callback = nullptr;
   short_press_function_on = false;
   return true;
 }
@@ -72,7 +72,7 @@ bool Button::removeLongPressCallback()
 {
   if (long_press_function_on == false)
     return false;
-  long_callback = null;
+  long_callback = nullptr;
   long_press_function_on = false;
   return true;
 }
