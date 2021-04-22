@@ -23,8 +23,6 @@ void Button::begin(int _pin)
 
 bool Button::addShortPressCallback(void (*_short_callback)())
 {
-  if (short_press_function_on == true)
-    return false;
   short_callback = _short_callback;
   short_press_function_on = true;
   return true;
@@ -57,8 +55,6 @@ bool Button::getShortPressCallbackStatus()
 
 bool Button::addLongPressCallback(void (*_long_callback)(), int _long_press_time)
 {
-  if (long_press_function_on == true)
-    return false;
   long_callback = _long_callback;
   if (_long_press_time <= DEBOUNCE_TIME)
     return false;
