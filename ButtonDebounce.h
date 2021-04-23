@@ -18,12 +18,16 @@ public:
   void begin(int _pin);
   void begin(int _pin, int _press_time);
 
+  bool setShortPressCallback(void (*_short_callback)());
+  [[deprecated("Use setShortPressCallback instead")]];
   bool addShortPressCallback(void (*_short_callback)());
   bool removeShortPressCallback();
   void enableShortPressCallback();
   void disableShortPressCallback();
   bool getShortPressCallbackStatus();
 
+  bool setLongPressCallback(void (*_long_callback)(), int _long_press_time);
+  [[deprecated("Use setLongPressCallback instead")]];
   bool addLongPressCallback(void (*_long_callback)(), int _long_press_time);
   bool removeLongPressCallback();
   void enableLongPressCallback();

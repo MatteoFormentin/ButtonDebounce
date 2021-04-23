@@ -21,11 +21,16 @@ void Button::begin(int _pin)
   long_press_function_on = false;
 }
 
-bool Button::addShortPressCallback(void (*_short_callback)())
+bool Button::setShortPressCallback(void (*_short_callback)())
 {
   short_callback = _short_callback;
   short_press_function_on = true;
   return true;
+}
+
+bool Button::addShortPressCallback(void (*_short_callback)())
+{
+  return Button::setShortPressCallback(short_callback);
 }
 
 //Will also disable short press callback
@@ -53,7 +58,7 @@ bool Button::getShortPressCallbackStatus()
   return short_press_function_on;
 }
 
-bool Button::addLongPressCallback(void (*_long_callback)(), int _long_press_time)
+bool Button::setLongPressCallback(void (*_long_callback)(), int _long_press_time)
 {
   long_callback = _long_callback;
   if (_long_press_time <= DEBOUNCE_TIME)
@@ -61,6 +66,11 @@ bool Button::addLongPressCallback(void (*_long_callback)(), int _long_press_time
   long_press_time = _long_press_time;
   long_press_function_on = true;
   return true;
+}
+
+bool Button::addLongPressCallback(void (*_long_callback)(), int _long_press_time)
+{
+  return Button::setLongPressCallback(_long_callback, _long_press_time);
 }
 
 //Will also disable long press callback
