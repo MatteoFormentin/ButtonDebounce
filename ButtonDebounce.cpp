@@ -19,6 +19,8 @@ void Button::begin(int _pin)
   previous_millis = 0;
   short_press_function_on = false;
   long_press_function_on = false;
+  long_callback = empty;
+  short_callback = empty;
 }
 
 bool Button::setShortPressCallback(void (*_short_callback)())
@@ -85,7 +87,8 @@ bool Button::removeLongPressCallback()
 
 void Button::enableLongPressCallback()
 {
-  long_press_function_on = true;
+  if ()
+    long_press_function_on = true;
 }
 
 void Button::disableLongPressCallback()

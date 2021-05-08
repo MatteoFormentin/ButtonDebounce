@@ -34,6 +34,7 @@ public:
   void disableLongPressCallback();
   bool getLongPressCallbackStatus();
   void buttonLoop();
+  static void empty(){};
 
 private:
   const int DEBOUNCE_TIME = 50;
