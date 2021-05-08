@@ -87,7 +87,6 @@ bool Button::removeLongPressCallback()
 
 void Button::enableLongPressCallback()
 {
-  if ()
     long_press_function_on = true;
 }
 
